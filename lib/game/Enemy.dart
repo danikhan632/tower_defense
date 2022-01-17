@@ -27,14 +27,14 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flame_svg/flame_svg.dart';
 class Enemy {
   // gun turret in a 2d tower defense game
-  double x_pos = 0;
-  double y_pos = 0;
+  double x_pos = 20;
+  double y_pos = 310;
   int width = 0;
   int height = 0;
   int damage = 0;
   int HP = 0;
   double direction = -0.785398 * 2;
-  double speed = 0;
+  double speed = 0.1;
   int reward = 0;
   double range = 0;
   double fire_rate = 0;
@@ -64,7 +64,7 @@ Enemy(SpriteComponent spr){
 //       ..anchor = Anchor.center;
   
  // Enemy(this.x_pos, this.y_pos, this.width, this.height, this.damage, this.HP, this.direction, this.speed, this.reward, this.range, this.fire_rate, this.sprite_enemy, this.enemy_sprites);
-  SpriteComponent getSprite(){return enemy;}
+  SpriteComponent getSprite(){return sprite_enemy;}
   double getX(){return x_pos;}
   double getY(){return y_pos;}
   int getWidth(){return width;}
@@ -90,7 +90,7 @@ Enemy(SpriteComponent spr){
   void setReward(int r){reward = r;}
   void setRange(double r){range = r;}
   void setFireRate(double f){fire_rate = f;}
-  void setSprite(String s){sprite_enemy = s;}
+  // void setSprite(String s){sprite_enemy = s;}
   void setEnemySprites(List<Sprite> s){enemy_sprites = s;}
   void setDamageState(int d){damage_state = d;}
   int getDamageState(){return damage_state;}
@@ -100,20 +100,17 @@ Enemy(SpriteComponent spr){
     new_pos.y += (speed * dt) * sin(direction);
     return new_pos;
   }
-  
+
      
-     enemy = SpriteComponent()
-      ..sprite = spriteSheet.getSprite(10, 17)
-      ..position = Vector2(0, 315)
-      ..scale = Vector2(1, 1)
-      ..angle = 0.0 //pi/2
-      ..size = Vector2(150, 150)
-      ..anchor = Anchor.center;
-  
+   
+@override
+  void render(Canvas canvas) {}
 void update(double dt) {
     //enemy.update(dt);
+    sprite_enemy..position =updatePosition(dt);
+
   }
-  void render(Canvas c) {} 
+  
 }
   
 

@@ -32,8 +32,12 @@ class TowerDefenseGame extends FlameGame {
     SpriteSheet spriteSheet = SpriteSheet.fromColumnsAndRows(
         image: imageInstance, columns: 22, rows: 13);
   
-
-  enemyList.add( Enemy(SpriteComponent()..sprite = spriteSheet.getSprite(10, 17)));
+   //Enemy tmp =Enemy(SpriteComponent()..sprite = spriteSheet.getSprite(10, 17) )
+   //enemyList.add( tmp);
+   enemyList.forEach((enemy) {
+      add(enemy.getSprite());
+     // print(enemy.getX());
+    });
     
   }
 
@@ -43,7 +47,8 @@ class TowerDefenseGame extends FlameGame {
   void update(double dt) {
     super.update(dt);
     enemyList.forEach((enemy) {
-      enemy.update(dt);
+      enemy.updatePosition(dt);
+     // print(enemy.getX());
     });
 
    
