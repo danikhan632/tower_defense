@@ -56,6 +56,22 @@ abstract class Tower {
   void setSpriteMuzzleFlash(String s) {sprite_muzzle_flash = s;}
   void setGunfireAudio(String s) {gunfire_audio = s;}
 
+  Tower(int x, int y, int w, int h, int d, double r, double f, double dir, int c, String sb, String st, String smf, String ga) {
+    x_pos = x;
+    y_pos = y;
+    width = w;
+    height = h;
+    damage = d;
+    range = r;
+    fire_rate = f;
+    direction = dir;
+    cost = c;
+    sprite_bottom = sb;
+    sprite_top = st;
+    sprite_muzzle_flash = smf;
+    gunfire_audio = ga;
+  }
+
 // Enemy getTarget(List<Object> enemyList, Tower tower){
 //     //find the closest enemy
 //     //return the enemy

@@ -30,11 +30,23 @@ class GunTower  {
   String sprite_muzzle_flash = "";
   String gunfire_audio = "";
   
-  GunTower(int x, int y, int w, int h, int d, double r, double f, double dir, int c, String sb, String st, String smf, String ga) {
+  GunTower(int x, int y, int w, int h, int d, 
+  double r, double f, double dir, int c, String 
+  sb, String st, String smf, String ga) {
+
+  
   // Super(x_pos = x, y_pos = y, width = w, height = h, damage = d, range = r, fire_rate = f, direction = dir,
   //  cost = c, sprite_bottom = sb, sprite_top = st, sprite_muzzle_flash = smf, gunfire_audio = ga);
 
   }
+// test = SpriteComponent()
+//       ..sprite = spriteSheet.getSprite(10, 18)
+//       ..position = Vector2(600, 500)
+//       ..scale = Vector2(1, 1)
+//       ..angle = -0.785398 * 2 //pi/2
+//       ..size = Vector2(150, 150)
+//       ..anchor = Anchor.center;
+
 
 
 }
