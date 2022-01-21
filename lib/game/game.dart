@@ -15,11 +15,13 @@ class TowerDefenseGame extends FlameGame {
   List<Enemy> enemyList = [];
   List<Object> towerList = [];
   List<Object> bulletList = [];
+ 
 
   SpriteComponent dummy = new SpriteComponent();
   Future<void> onLoad() async {
     WidgetsFlutterBinding.ensureInitialized();
-    Flame.device.fullScreen();
+    await Flame.device.fullScreen();
+    await Flame.device.setLandscape();
 
     SpriteComponent background = SpriteComponent()
       ..sprite = await Sprite.load('gamemap.png')
@@ -29,6 +31,7 @@ class TowerDefenseGame extends FlameGame {
     final imageInstance = await images.load('sprite_sheet.png');
     SpriteSheet spriteSheet = SpriteSheet.fromColumnsAndRows(
         image: imageInstance, columns: 22, rows: 13);
+
     SpriteComponent tmp = SpriteComponent()
       ..sprite = spriteSheet.getSprite(10, 17);
 
@@ -51,7 +54,7 @@ class TowerDefenseGame extends FlameGame {
 
   void main() {}
 
-  double move_x = 0.3;
+  double move_x = 0.5;
   double move_y = 0.0;
   List<bool> turns = [
     false,
@@ -64,11 +67,14 @@ class TowerDefenseGame extends FlameGame {
   @override
   void update(double dt) {
     super.update(dt);
-    test..position =
-        Vector2(test.position.x + move_x, test.position.y + move_y);
+    test
+      ..position = Vector2(test.position.x + move_x, test.position.y + move_y);
+    var x = List.generate(3, (i) => List.generate(3, (j) => i + j));
+//print(x);
     print(test.position);
   }
 }
+
 
 //  @override
 //   void update(double dt) {

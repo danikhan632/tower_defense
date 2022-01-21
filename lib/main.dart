@@ -13,7 +13,6 @@ import 'package:tower_defense/game/Projectile.dart';
 import 'package:tower_defense/game/SideMenu.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Flame.device.fullScreen();
 
   runApp(GameWidget(game: TowerDefenseGame()));
 }
