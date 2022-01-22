@@ -23,7 +23,9 @@ void main() {
 git clone https://github.com/danikhan632/tower_defense.git
 git pull
 
- 
+git add .
+git commit -m "update"
+git push
 
 
 
