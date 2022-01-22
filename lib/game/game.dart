@@ -10,6 +10,11 @@ import 'package:tower_defense/game/Enemy.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flame_svg/flame_svg.dart';
+import 'package:tower_defense/game/grid.dart';
+
+// class Maploader extends FlameGame {
+//   Future<void> onLoad() async
+// }
 
 class TowerDefenseGame extends FlameGame {
   SpriteComponent test = new SpriteComponent();
@@ -23,11 +28,14 @@ class TowerDefenseGame extends FlameGame {
     await Flame.device.fullScreen();
     await Flame.device.setLandscape();
 
-    final game_map = await TiledComponent.load(
-      'map.tmx',
-      Vector2.all(64)
-    );
-  add(game_map);
+camera.viewport = FixedResolutionViewport(
+    Vector2(1280,704));
+
+    SpriteComponent background = SpriteComponent()
+      ..sprite = await Sprite.load('game_map.png')
+      ..size = size;
+    add(background);
+
     final imageInstance = await images.load('sprite_sheet.png');
     SpriteSheet spriteSheet = SpriteSheet.fromColumnsAndRows(
         image: imageInstance, columns: 22, rows: 13);
@@ -42,6 +50,7 @@ class TowerDefenseGame extends FlameGame {
     // //    print(enemy.getX());
     // // });
     // add(dummy.getSprite());
+   
     test = SpriteComponent()
       ..sprite = spriteSheet.getSprite(10, 17)
       ..position = Vector2(10, 310)
@@ -50,6 +59,7 @@ class TowerDefenseGame extends FlameGame {
       ..size = Vector2(150, 150)
       ..anchor = Anchor.center;
     add(test);
+   
   }
 
   void main() {}

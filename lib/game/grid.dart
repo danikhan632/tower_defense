@@ -21,19 +21,18 @@ import 'package:flame/game.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'dart:ui';
+import 'package:flame_tiled/flame_tiled.dart';
 import 'package:tower_defense/game/Enemy.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flame_svg/flame_svg.dart';
 
-class grid {
+class grid extends FlameGame {
 // double width = MediaQuery.of(context).size.width;
 // double height = MediaQuery.of(context).size.height;
-  double width = 1920;
-  double height = 1080;
+
 
   grid() {
-    
+
   }
-  
 }
