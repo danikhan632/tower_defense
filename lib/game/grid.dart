@@ -32,6 +32,8 @@ class grid {
   double width = 1920;
   double height = 1080;
 
-  grid() {}
+  grid() {
+    
+  }
   
 }

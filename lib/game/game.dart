@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flame/game.dart';
 import 'package:flame/flame.dart';
+import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flame/sprite.dart';
 import 'dart:ui';
 import 'package:tower_defense/game/Enemy.dart';
@@ -15,7 +16,6 @@ class TowerDefenseGame extends FlameGame {
   List<Enemy> enemyList = [];
   List<Object> towerList = [];
   List<Object> bulletList = [];
- 
 
   SpriteComponent dummy = new SpriteComponent();
   Future<void> onLoad() async {
@@ -23,11 +23,11 @@ class TowerDefenseGame extends FlameGame {
     await Flame.device.fullScreen();
     await Flame.device.setLandscape();
 
-    SpriteComponent background = SpriteComponent()
-      ..sprite = await Sprite.load('gamemap.png')
-      ..size = size;
-    add(background);
-
+    final game_map = await TiledComponent.load(
+      'map.tmx',
+      Vector2.all(64)
+    );
+  add(game_map);
     final imageInstance = await images.load('sprite_sheet.png');
     SpriteSheet spriteSheet = SpriteSheet.fromColumnsAndRows(
         image: imageInstance, columns: 22, rows: 13);
