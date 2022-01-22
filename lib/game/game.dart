@@ -12,79 +12,69 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flame_svg/flame_svg.dart';
 import 'package:tower_defense/game/grid.dart';
 
-// class Maploader extends FlameGame {
-//   Future<void> onLoad() async
-// }
+//1.570 is south/d
+//6.283 / 0 is east
+//3.14 is west
+//4.712 north
 
 class TowerDefenseGame extends FlameGame {
   SpriteComponent test = new SpriteComponent();
   List<Enemy> enemyList = [];
   List<Object> towerList = [];
   List<Object> bulletList = [];
-
+  List<int> levelList = [5, 10];
   SpriteComponent dummy = new SpriteComponent();
   Future<void> onLoad() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Flame.device.fullScreen();
     await Flame.device.setLandscape();
 
-camera.viewport = FixedResolutionViewport(
-    Vector2(1280,704));
+    camera.viewport = FixedResolutionViewport(Vector2(1280, 720));
 
     SpriteComponent background = SpriteComponent()
       ..sprite = await Sprite.load('game_map.png')
       ..size = size;
     add(background);
-
+    Grid grid = new Grid();
     final imageInstance = await images.load('sprite_sheet.png');
     SpriteSheet spriteSheet = SpriteSheet.fromColumnsAndRows(
         image: imageInstance, columns: 22, rows: 13);
 
-    SpriteComponent tmp = SpriteComponent()
-      ..sprite = spriteSheet.getSprite(10, 17);
-
-    // Enemy dummy = Enemy(tmp);
-    // enemyList.add(dummy);
-    // // enemyList.forEach((enemy) {
-    // //   add(enemy.getSprite());
-    // //    print(enemy.getX());
-    // // });
-    // add(dummy.getSprite());
-   
     test = SpriteComponent()
       ..sprite = spriteSheet.getSprite(10, 17)
-      ..position = Vector2(10, 310)
+      ..position = Vector2(500, 500)
       ..scale = Vector2(1, 1)
-      ..angle = 0.0 //pi/2
+      ..angle = 6.283 //pi/2
       ..size = Vector2(150, 150)
       ..anchor = Anchor.center;
+    Enemy dummy = Enemy(test);
+
+    add(dummy.getSprite());
+
     add(test);
-   
   }
 
   void main() {}
 
   double move_x = 0.5;
   double move_y = 0.0;
-  List<bool> turns = [
-    false,
-    false,
-    false,
-    false,
-    false,
-  ];
 
   @override
   void update(double dt) {
     super.update(dt);
     test
       ..position = Vector2(test.position.x + move_x, test.position.y + move_y);
-    var x = List.generate(3, (i) => List.generate(3, (j) => i + j));
-//print(x);
+
     print(test.position);
   }
 }
-
+  // test = SpriteComponent()
+  //     ..sprite = spriteSheet.getSprite(10, 17)
+  //     ..position = Vector2(500, 500)
+  //     ..scale = Vector2(1, 1)
+  //     ..angle = 6.283 //pi/2
+  //     ..size = Vector2(150, 150)
+  //     ..anchor = Anchor.center;
 
 //  @override
 //   void update(double dt) {
