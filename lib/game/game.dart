@@ -6,11 +6,13 @@ import 'package:flame/flame.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flame/sprite.dart';
 import 'dart:ui';
+import 'dart:io';
 import 'package:tower_defense/game/Enemy.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flame_svg/flame_svg.dart';
 import 'package:tower_defense/game/grid.dart';
+import 'package:tower_defense/game/EnemyManager.dart';
 
 //1.570 is south/d
 //6.283 / 0 is east
@@ -19,13 +21,20 @@ import 'package:tower_defense/game/grid.dart';
 
 class TowerDefenseGame extends FlameGame {
   SpriteComponent test = new SpriteComponent();
-  List<Enemy> enemyList = [];
+  List<Enemy>? enemyList = [];
   List<Object> towerList = [];
   List<Object> bulletList = [];
+  bool load = false;
+
   List<int> levelList = [5, 10];
+  EnemyManager enemyManager = new EnemyManager();
+  SpriteSheet? spriteSheet;
   SpriteComponent dummy = new SpriteComponent();
+
   Future<void> onLoad() async {
+    await super.onLoad();
     WidgetsFlutterBinding.ensureInitialized();
+
     await Flame.device.fullScreen();
     await Flame.device.setLandscape();
 
@@ -37,21 +46,17 @@ class TowerDefenseGame extends FlameGame {
     add(background);
     Grid grid = new Grid();
     final imageInstance = await images.load('sprite_sheet.png');
-    SpriteSheet spriteSheet = SpriteSheet.fromColumnsAndRows(
+    spriteSheet = SpriteSheet.fromColumnsAndRows(
         image: imageInstance, columns: 22, rows: 13);
 
-    test = SpriteComponent()
-      ..sprite = spriteSheet.getSprite(10, 17)
-      ..position = Vector2(500, 500)
-      ..scale = Vector2(1, 1)
-      ..angle = 6.283 //pi/2
-      ..size = Vector2(150, 150)
-      ..anchor = Anchor.center;
-    Enemy dummy = Enemy(test);
+    enemyManager = new EnemyManager();
 
-    add(dummy.getSprite());
+    load = true;
+    return super.onLoad();
+  }
 
-    add(test);
+  TowerDefenseGame() {
+    print("init");
   }
 
   void main() {}
@@ -59,15 +64,52 @@ class TowerDefenseGame extends FlameGame {
   double move_x = 0.5;
   double move_y = 0.0;
 
+// @override
+// void onMount(){
+
+// }
   @override
   void update(double dt) {
     super.update(dt);
-    test
-      ..position = Vector2(test.position.x + move_x, test.position.y + move_y);
-
-    print(test.position);
+    // sleep(const Duration(seconds: 2));
+    if (load) {
+      enemyManager.updateEnemy();
+    }
+    //print(enemyManager?.work());
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // test
+    //   ..position = Vector2(test.position.x + move_x, test.position.y + move_y);
+
+    // print(test.position);
+
+
+
+
   // test = SpriteComponent()
   //     ..sprite = spriteSheet.getSprite(10, 17)
   //     ..position = Vector2(500, 500)

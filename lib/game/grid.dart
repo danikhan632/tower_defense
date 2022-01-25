@@ -103,15 +103,15 @@ class gridObj {
   }
 }
 
-class EnemyManager{
-  List<Enemy> enemyList = [];
-  EnemyManager(){
-    enemyList = [];
-  }
-  void addEnemy(Enemy enemy){
-    enemyList.add(enemy);
-  }
-  void removeEnemy(Enemy enemy){
-    enemyList.remove(enemy);
-  }
-}
+// class EnemyManager{
+//   List<Enemy> enemyList = [];
+//   EnemyManager(){
+//     enemyList = [];
+//   }
+//   void addEnemy(Enemy enemy){
+//     enemyList.add(enemy);
+//   }
+//   void removeEnemy(Enemy enemy){
+//     enemyList.remove(enemy);
+//   }
+// }
