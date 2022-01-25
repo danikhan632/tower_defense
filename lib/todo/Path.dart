@@ -13,7 +13,7 @@ import 'package:path_provider/path_provider.dart';
 // import 'package:tower_defense/game/Projectile.dart';
 // import 'package:tower_defense/game/SideMenu.dart';
 
-List<Enemy> enemyList = [];
+// List<Enemy> enemyList = [];
 List<Vector3> turns = [
   Vector3(0, 315.00, 0.0),
   Vector3(215.0, 315.0, 1.570796),
@@ -22,9 +22,9 @@ List<Vector3> turns = [
 
 class Path {
   //list of enemies, function for devices size, list of turns
-  Path(List<Enemy> enemyList_in) {
-    enemyList =enemyList_in;
-  }
+  // Path(List<Enemy> enemyList_in) {
+  //   enemyList =enemyList_in;
+  // }
 
   void update(double dt) {
     
